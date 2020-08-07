@@ -20,7 +20,7 @@ namespace socket
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(ip, myPort));
             serverSocket.Listen(10);
-            Console.WriteLine("启动监听{0}成功", serverSocket.LocalEndPoint.ToString());
+            Console.WriteLine("Successfully to listen: {0}", serverSocket.LocalEndPoint.ToString());
             //通过Clientsocket发送数据
             Thread myThread = new Thread(ListenClientConnect);
             myThread.Start();
@@ -36,7 +36,7 @@ namespace socket
             while(true)
             {
                 Socket clientSocket = serverSocket.Accept();
-                clientSocket.Send(Encoding.ASCII.GetBytes("Server Say Hello"));
+                clientSocket.Send(Encoding.ASCII.GetBytes("Server says Hello"));
                 Thread receiveThread = new Thread(ReceiveMessage);
                 receiveThread.Start(clientSocket);
             }
@@ -56,7 +56,7 @@ namespace socket
                 {
                     // 通过clientSocket接收数据
                     int receiveNumber = myClientSocket.Receive(result);
-                    Console.WriteLine("接收客户端{0}消息{1}", myClientSocket.RemoteEndPoint.ToString(), Encoding.ASCII.GetString(result, 0, receiveNumber));
+                    Console.WriteLine("Receive message from client: {0} - {1}", myClientSocket.RemoteEndPoint.ToString(), Encoding.ASCII.GetString(result, 0, receiveNumber));
 
                 }
                 catch(Exception ex)
@@ -66,9 +66,7 @@ namespace socket
                     myClientSocket.Close();
                     break;
                 }
-
             }
-
         }
     }
 }
