@@ -14,6 +14,7 @@ namespace socket
         private static byte[] result = new byte[1024];
         private static int myPort = 8885;
         static Socket serverSocket;
+
         static void Main(string[] args)
         {
             IPAddress ip = IPAddress.Parse("127.0.0.1");
@@ -25,7 +26,6 @@ namespace socket
             Thread myThread = new Thread(ListenClientConnect);
             myThread.Start();
             Console.ReadLine();
-
         }
 
         /// <summary>
@@ -40,7 +40,6 @@ namespace socket
                 Thread receiveThread = new Thread(ReceiveMessage);
                 receiveThread.Start(clientSocket);
             }
-
         }
 
         /// <summary>
@@ -57,7 +56,6 @@ namespace socket
                     // 通过clientSocket接收数据
                     int receiveNumber = myClientSocket.Receive(result);
                     Console.WriteLine("Receive message from client: {0} - {1}", myClientSocket.RemoteEndPoint.ToString(), Encoding.ASCII.GetString(result, 0, receiveNumber));
-
                 }
                 catch(Exception ex)
                 {

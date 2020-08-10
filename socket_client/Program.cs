@@ -7,8 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-
-
 namespace socket_client
 {
     class Program
@@ -24,8 +22,6 @@ namespace socket_client
             {
                 clientSocket.Connect(new IPEndPoint(ip, 8885)); // 配置服务器IP与端口
                 Console.WriteLine("Successfully connected to server!");
-
-
             }
             catch
             {
@@ -51,7 +47,6 @@ namespace socket_client
                     clientSocket.Close();
                     break;
                 }
-
             }
 
             Console.WriteLine("Sent completed, press Enter key to exit");
